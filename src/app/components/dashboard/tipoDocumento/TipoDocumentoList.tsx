@@ -5,17 +5,17 @@ import Td from "@/components/ui/Td";
 import Th from "@/components/ui/Th";
 import Thead from "@/components/ui/Thead";
 import Tr from "@/components/ui/Tr";
-import { GeneroModel } from "@/types/GeneroModel";
+import { TipoDocumentoModel } from "@/types/TipoDocumentoModel";
 import formatDate from "@/utils/formatDate";
 import { PencilIcon, TrashIcon } from "@heroicons/react/16/solid";
 
 interface Props{
-    models:GeneroModel[]
-    handleEditar:(x:GeneroModel) => {}
-    handleEliminar:(x:GeneroModel) => {}
+    models:TipoDocumentoModel[]
+    handleEditar:(x:TipoDocumentoModel) => {}
+    handleEliminar:(x:TipoDocumentoModel) => {}
 }
 
-const GeneroList:React.FC<Props> = ({models,handleEditar,handleEliminar}) => {
+const TipoDocumentoList:React.FC<Props> = ({models,handleEditar,handleEliminar}) => {
     return <Table>
         <Thead>
             <Tr>
@@ -62,4 +62,4 @@ const GeneroList:React.FC<Props> = ({models,handleEditar,handleEliminar}) => {
 
 }
 
-export default GeneroList;
+export default TipoDocumentoList;

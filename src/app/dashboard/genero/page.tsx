@@ -2,34 +2,29 @@
 
 import GeneroForm from "@/components/dashboard/genero/GeneroForm";
 import GeneroList from "@/components/dashboard/genero/GeneroList";
-import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
-import Select from "@/components/ui/Select";
-import Table from "@/components/ui/Table";
-import Tbody from "@/components/ui/Tbody";
-import Td from "@/components/ui/Td";
-import Th from "@/components/ui/Th";
-import Thead from "@/components/ui/Thead";
-import Tr from "@/components/ui/Tr";
-import { generoService } from "@/services/generoService";
-import { GeneroModel, GeneroUpdateModel } from "@/types/GeneroModel";
-import formatDate from "@/utils/formatDate";
-import { CheckIcon, PencilIcon, TrashIcon } from "@heroicons/react/16/solid";
-import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
+import { GeneroService } from "@/services/GeneroService";
+import { GeneroCreateModel, GeneroModel, GeneroUpdateModel } from "@/types/GeneroModel";
+import {  useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 
 const Genero:React.FC  = () =>  {
-    const [generos,setGeneros] = useState<GeneroModel[]>([])
+    const [models,setModels] = useState<GeneroModel[]>([])
     const [model,setModel] = useState<GeneroModel>(new GeneroModel())
+    const router = useRouter();
     
     useEffect( () => {
-        generosApi();
+        if(!localStorage.user){
+          router.push("/login");
+        }
+
+        modelsApi();
     },[]);
 
-    const generosApi = async ()  => {
-      const res = await generoService.get()
-      setGeneros(res.data)
+    const modelsApi = async ()  => {
+      const res = await GeneroService.get()
+      setModels(res.data)
   }
 
     const handleEditar = async (model:GeneroModel) => {
@@ -46,24 +41,21 @@ const Genero:React.FC  = () =>  {
         showCancelButton: true,
       }).then(async res => {
         if(res.isConfirmed){
-          const res = await generoService.delete(model.id);
+          const res = await GeneroService.delete(model.id);
 
           if(res.status==1){
             Swal.fire({text:res.message,icon:"success"});
-            generosApi();
+            modelsApi();
           }else{
             Swal.fire({text:res.message,icon:"warning"});
           }
         }
       })
-
-      
     }
 
     const handleGuardar = async (form:GeneroModel) => {
-
       if(form.id==0){
-        const res = await generoService.post(GeneroModel.createModel(form));
+        const res = await GeneroService.save(new GeneroCreateModel(form));
         if(res.status==1){
           Swal.fire({text:res.message,icon:"success"});
           setModel(new GeneroModel())
@@ -71,7 +63,7 @@ const Genero:React.FC  = () =>  {
           Swal.fire({text:res.message,icon:"warning"});
         }
       }else{
-        const res = await generoService.update(GeneroModel.updateModel(form));
+        const res = await GeneroService.update(form.id,new GeneroUpdateModel(form));
         if(res.status==1){
           Swal.fire({text:res.message,icon:"success"});
           setModel(new GeneroModel())
@@ -81,13 +73,16 @@ const Genero:React.FC  = () =>  {
 
       }
 
-      await generosApi();
+      await modelsApi();
     }
 
+  
+
     return  <div className="container mx-auto px-4 py-8">
-    <h1 className="text-2xl font-bold text-gray-800 mb-6">Tabla Dinámica</h1>
-    <GeneroForm handleGuardar={(model)=>handleGuardar(model)} model={model}   />
-    <GeneroList models={generos} handleEditar={handleEditar} handleEliminar={handleEliminar} />
+    <h1 className="text-2xl font-bold text-gray-800 mb-6">Género</h1>
+    <GeneroForm handleGuardar={(model)=>handleGuardar(model)} model={model} />
+      <br />
+    <GeneroList models={models} handleEditar={handleEditar} handleEliminar={handleEliminar} />
   </div>
 }
 

@@ -1,17 +1,17 @@
 import Button from "@/components/ui/Button"
 import Input from "@/components/ui/Input"
 import Select from "@/components/ui/Select"
-import { GeneroModel } from "@/types/GeneroModel"
+import { TipoDocumentoModel } from "@/types/TipoDocumentoModel"
 import { CheckIcon } from "@heroicons/react/16/solid"
 import { FormEventHandler, useEffect, useState } from "react"
 
 interface Props{
-    handleGuardar:(model:GeneroModel)=> {}
-    model : GeneroModel
+    handleGuardar:(model:TipoDocumentoModel)=> {}
+    model : TipoDocumentoModel
 }
 
-const GeneroForm:React.FC<Props> = ({handleGuardar, model}) => {
-    const [form, setForm] = useState<GeneroModel>(model);
+const TipoDocumentoForm:React.FC<Props> = ({handleGuardar, model}) => {
+    const [form, setForm] = useState<TipoDocumentoModel>(model);
     useEffect(()=>{
         setForm(model)
     },[model])
@@ -33,4 +33,4 @@ const GeneroForm:React.FC<Props> = ({handleGuardar, model}) => {
   </form>
 }
 
-export default GeneroForm
+export default TipoDocumentoForm

@@ -13,9 +13,9 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+   
+    if (localStorage.user) {
+      config.headers.Authorization = `Bearer ${JSON.parse(localStorage.user).token}`;
     }
     return config;
   },
@@ -30,8 +30,6 @@ apiClient.interceptors.response.use(
     return response
   },
   (error) => {
-    console.log(error);
-    
     if (error) {
       Swal.fire({text:error?.response?.data.message,icon:"warning"})
     } else {

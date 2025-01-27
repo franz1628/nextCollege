@@ -1,4 +1,4 @@
-export class GeneroModel {
+export class TipoDocumentoModel {
     id:number=0;
     descripcion:string="";
     estado:number=1;
@@ -6,18 +6,18 @@ export class GeneroModel {
     updated_at:Date=new Date();
 }
 
-export class GeneroCreateModel {
+export class TipoDocumentoCreateModel {
     descripcion:string;
-    constructor(model:GeneroModel=new GeneroModel()){
+    constructor(model:TipoDocumentoModel=new TipoDocumentoModel()){
         this.descripcion = model.descripcion;
     }
 }
 
-export class GeneroUpdateModel {
+export class TipoDocumentoUpdateModel {
     id:number;
     descripcion:string;
     estado:number;
-    constructor(model:GeneroModel=new GeneroModel()){
+    constructor(model:TipoDocumentoModel=new TipoDocumentoModel()){
         this.id = model.id;
         this.descripcion = model.descripcion;
         this.estado = model.estado;
