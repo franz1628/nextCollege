@@ -19,14 +19,18 @@ export default function DashboarLayout({
         <a href="/" className="text-xl font-bold text-gray-800">College</a>
 
         
-        <nav className="hidden md:flex space-x-6">
+        <nav className="">
             <a href="/dashboard/genero" className="text-gray-600 hover:text-blue-600">Genero</a>
         </nav>
-        <nav className="hidden md:flex space-x-6">
+        <nav className="">
             <a href="/dashboard/tipoDocumento" className="text-gray-600 hover:text-blue-600">Tipo Documento</a>
         </nav>
+
+        <nav className="">
+            <a href="/dashboard/alumno" className="text-gray-600 hover:text-blue-600">Alumno</a>
+        </nav>
         
-        <div className="hidden md:flex space-x-4 ">
+        <div className="">
           
             <a href="#" onClick={handleCerrarSesion} className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex">   <ArrowLeftCircleIcon className="w-5 me-2" />Cerrar Sesion</a>
         </div>

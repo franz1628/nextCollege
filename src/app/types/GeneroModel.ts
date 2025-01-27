@@ -3,7 +3,7 @@ export class GeneroModel {
     descripcion:string="";
     estado:number=1;
     created_at:Date=new Date();
-    updated_at:Date=new Date();
+    updated_at?:Date;
 }
 
 export class GeneroCreateModel {

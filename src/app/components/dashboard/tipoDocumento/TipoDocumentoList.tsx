@@ -41,7 +41,7 @@ const TipoDocumentoList:React.FC<Props> = ({models,handleEditar,handleEliminar})
                           :<span className="bg-red-500  text-white p-1 rounded-md">INACTIVO</span>
                           }</Td>
                         <Td>{formatDate(x.created_at)}</Td>
-                        <Td>{formatDate(x.updated_at)}</Td>
+                        <Td>{x.updated_at && formatDate(x.updated_at)}</Td>
                         <Td>
                         <div className="flex items-center">
                           <Button color="sky" onClick={() => handleEditar(x)}>
