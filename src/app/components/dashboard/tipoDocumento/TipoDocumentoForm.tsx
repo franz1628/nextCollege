@@ -22,9 +22,9 @@ const TipoDocumentoForm:React.FC<Props> = ({handleGuardar, model}) => {
     }
     
     
-    return <form onSubmit={onSubmit}>
-    <Input type="text" placeholder="descripcion" value={form.descripcion} onChange={(e)=>setForm({ ...form, descripcion: e.target.value })} />
-    <Select onChange={(e)=>setForm({ ...form, estado: +e.target.value })} value={form.estado.toString()}>
+    return <form onSubmit={onSubmit} className="w-1/2">
+    <Input label="Descripción" type="text" placeholder="descripcion" value={form.descripcion} onChange={(e)=>setForm({ ...form, descripcion: e.target.value })} />
+    <Select label="Estado" onChange={(e)=>setForm({ ...form, estado: +e.target.value })} value={form.estado.toString()}>
       <option value="">SELECCIONAR</option>
       <option value="1">ACTIVO</option>
       <option value="0">INACTIVO</option>

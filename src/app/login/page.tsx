@@ -42,20 +42,12 @@ const Login: React.FC<Props> = ({}) => {
         </h2>
         <form onSubmit={onSubmit}>
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Username
-            </label>
-            
-
-            <Input type="text" placeholder="username" value={form.username} onChange={(e)=>setForm({...form,username:(e.target as HTMLInputElement).value})} />
+            <Input label="Username" type="text" placeholder="username" value={form.username} onChange={(e)=>setForm({...form,username:(e.target as HTMLInputElement).value})} />
 
           </div>
 
           <div> 
-            <label className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <Input type="password" placeholder="password" value={form.password} onChange={(e)=>setForm({...form,password:(e.target as HTMLInputElement).value})}/>
+            <Input label="Password" type="password" placeholder="password" value={form.password} onChange={(e)=>setForm({...form,password:(e.target as HTMLInputElement).value})}/>
           </div>
 
 
