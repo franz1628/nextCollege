@@ -37,11 +37,11 @@ const AlumnoList:React.FC<Props> = ({models,handleEditar,handleEliminar}) => {
                 models.map(x=>{
                     return <Tr key={x.id}>
                         <Td>{x.id}</Td>
-                        <Td>{`${x.nombres} ${x.apellidoPaterno} ${x.apellidoMaterno}`}</Td>
-                        <Td>{formatDate(x.fechaNacimiento)}</Td>
-                        <Td>{x.idTipoDocumento}</Td>
-                        <Td>{x.numeroDocumento}</Td>
-                        <Td>{x.idGenero}</Td>
+                        <Td>{`${x.nombres} ${x.apellido_paterno} ${x.apellido_materno}`}</Td>
+                        <Td>{formatDate(x.fecha_nacimiento)}</Td>
+                        <Td>{x.tipo_documento.descripcion}</Td>
+                        <Td>{x.numero_documento}</Td>
+                        <Td>{x.genero.descripcion}</Td>
               
                         <Td>
                           {

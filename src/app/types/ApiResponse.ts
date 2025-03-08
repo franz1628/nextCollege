@@ -1,5 +1,5 @@
 export interface ApiResponse<T> {
-    status:number
+    state:number
     message:string
     data : T
     timeStamp:Date

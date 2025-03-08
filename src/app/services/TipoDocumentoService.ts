@@ -4,19 +4,19 @@ import { TipoDocumentoCreateModel, TipoDocumentoModel, TipoDocumentoUpdateModel 
 
 export const TipoDocumentoService = {
     get: async ():Promise<ApiResponse<TipoDocumentoModel[]>> => {
-        const res = await apiClient.get('tipoDocumento/');
+        const res = await apiClient.get('tipo-documento/');
         return res.data;
     },
     save: async (model:TipoDocumentoCreateModel): Promise<ApiResponse<TipoDocumentoModel>> => {
-        const res = await apiClient.post('tipoDocumento/',model);
+        const res = await apiClient.post('tipo-documento/',model);
         return res.data;
     },
     update: async (id:number, model:TipoDocumentoUpdateModel): Promise<ApiResponse<TipoDocumentoModel>> => {
-        const res = await apiClient.put('tipoDocumento/'+id, model);
+        const res = await apiClient.put('tipo-documento/'+id, model);
         return res.data;
     },
     delete : async (id:number):Promise<ApiResponse<TipoDocumentoModel>>  => {
-        const response =  await apiClient.delete('tipoDocumento/'+id)
+        const response =  await apiClient.delete('tipo-documento/'+id)
         return response.data;
     }
 }

@@ -46,11 +46,11 @@ const AlumnoForm:React.FC<Props> = ({handleGuardar, model}) => {
     return <form onSubmit={onSubmit} className="mb-4">
     <Input type="text" label="Nombres" placeholder="Nombres..." value={form.nombres} onChange={(e)=>setForm({ ...form, nombres: e.target.value })} />
 
-    <Input type="text" label="Apellido Paterno" placeholder="Apellido Paterno..." value={form.apellidoPaterno} onChange={(e)=>setForm({ ...form, apellidoPaterno: e.target.value })} />
-    <Input type="text" label="Apellido Materno" placeholder="Apellido Materno..." value={form.apellidoMaterno} onChange={(e)=>setForm({ ...form, apellidoMaterno: e.target.value })} />
-    <Input type="date" label="Nacimiento"placeholder="Fecha Nacimiento..." value={formatDate(form.fechaNacimiento)} onChange={(e)=>setForm({ ...form, fechaNacimiento: new Date(e.target.value) })} />
+    <Input type="text" label="Apellido Paterno" placeholder="Apellido Paterno..." value={form.apellido_paterno} onChange={(e)=>setForm({ ...form, apellido_paterno: e.target.value })} />
+    <Input type="text" label="Apellido Materno" placeholder="Apellido Materno..." value={form.apellido_materno} onChange={(e)=>setForm({ ...form, apellido_materno: e.target.value })} />
+    <Input type="date" label="Nacimiento"placeholder="Fecha Nacimiento..." value={formatDate(form.fecha_nacimiento)} onChange={(e)=>setForm({ ...form, fecha_nacimiento: new Date(e.target.value) })} />
 
-    <Select label="Tipo Documento" onChange={(e)=>setForm({ ...form, idTipoDocumento: +e.target.value })} value={form.idTipoDocumento.toString()}>
+    <Select label="Tipo Documento" onChange={(e)=>setForm({ ...form, id_tipo_documento: +e.target.value })} value={form.id_tipo_documento.toString()}>
       <option value="">SELECCIONAR</option>
       {
         tipoDocumentos.map(x=>(
@@ -59,9 +59,9 @@ const AlumnoForm:React.FC<Props> = ({handleGuardar, model}) => {
       }
     </Select>
 
-    <Input label="Numero Documento" type="text" placeholder="Numero documento..." value={form.numeroDocumento} onChange={(e)=>setForm({ ...form, numeroDocumento: e.target.value })} />
+    <Input label="Numero Documento" type="text" placeholder="Numero documento..." value={form.numero_documento} onChange={(e)=>setForm({ ...form, numero_documento: e.target.value })} />
 
-    <Select label="Genero" onChange={(e)=>setForm({ ...form, idGenero: +e.target.value })} value={form.idGenero.toString()}>
+    <Select label="Genero" onChange={(e)=>setForm({ ...form, id_genero: +e.target.value })} value={form.id_genero.toString()}>
       <option value="">SELECCIONAR</option>
       {
         generos.map(x=>(

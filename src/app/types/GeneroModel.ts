@@ -14,11 +14,9 @@ export class GeneroCreateModel {
 }
 
 export class GeneroUpdateModel {
-    id:number;
     descripcion:string;
     estado:number;
     constructor(model:GeneroModel=new GeneroModel()){
-        this.id = model.id;
         this.descripcion = model.descripcion;
         this.estado = model.estado;
     }

@@ -10,7 +10,9 @@ export class UserService{
     
     static login = async (model:UserModel):Promise<LoginResponse> => {
         const response =  await apiClient.post(this.url,model)
-        return response.data;
+        console.log(response.data.data);
+        
+        return response.data.data; 
     }
 
 }

@@ -5,6 +5,7 @@ import { GeneroCreateModel, GeneroModel, GeneroUpdateModel } from "@/types/Gener
 export const GeneroService = {
     get: async ():Promise<ApiResponse<GeneroModel[]>> => {
         const res = await apiClient.get('genero/');
+
         return res.data;
     },
 
@@ -13,7 +14,7 @@ export const GeneroService = {
         return res.data;
     },
     update: async (id:number, model:GeneroUpdateModel): Promise<ApiResponse<GeneroModel>> => {
-        const res = await apiClient.put('genero/'+id, model);
+        const res = await apiClient.patch('genero/'+id, model);
         return res.data;
     },
     delete : async (id:number):Promise<ApiResponse<GeneroModel>>  => {

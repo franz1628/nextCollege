@@ -43,7 +43,7 @@ const Alumno:React.FC  = () =>  {
         if(res.isConfirmed){
           const res = await AlumnoService.delete(model.id);
 
-          if(res.status==1){
+          if(res.state==1){
             Swal.fire({text:res.message,icon:"success"});
             modelsApi();
           }else{
@@ -56,7 +56,7 @@ const Alumno:React.FC  = () =>  {
     const handleGuardar = async (form:AlumnoModel) => {
       if(form.id==0){
         const res = await AlumnoService.save(new AlumnoCreateModel(form));
-        if(res.status==1){
+        if(res.state==1){
           modelsApi();
           setModel(new AlumnoModel())
           Swal.fire({text:res.message,icon:"success"});
@@ -65,7 +65,7 @@ const Alumno:React.FC  = () =>  {
         }
       }else{
         const res = await AlumnoService.update(form.id,new AlumnoUpdateModel(form));
-        if(res.status==1){
+        if(res.state==1){
           modelsApi();
           setModel(new AlumnoModel())
           Swal.fire({text:res.message,icon:"success"});

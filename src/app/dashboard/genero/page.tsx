@@ -43,7 +43,7 @@ const Genero:React.FC  = () =>  {
         if(res.isConfirmed){
           const res = await GeneroService.delete(model.id);
 
-          if(res.status==1){
+          if(res.state==1){
             Swal.fire({text:res.message,icon:"success"});
             modelsApi();
           }else{
@@ -56,7 +56,7 @@ const Genero:React.FC  = () =>  {
     const handleGuardar = async (form:GeneroModel) => {
       if(form.id==0){
         const res = await GeneroService.save(new GeneroCreateModel(form));
-        if(res.status==1){
+        if(res.state==1){
           Swal.fire({text:res.message,icon:"success"});
           setModel(new GeneroModel())
         }else{
@@ -64,7 +64,7 @@ const Genero:React.FC  = () =>  {
         }
       }else{
         const res = await GeneroService.update(form.id,new GeneroUpdateModel(form));
-        if(res.status==1){
+        if(res.state==1){
           Swal.fire({text:res.message,icon:"success"});
           setModel(new GeneroModel())
         }else{

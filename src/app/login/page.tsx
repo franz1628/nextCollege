@@ -26,6 +26,8 @@ const Login: React.FC<Props> = ({}) => {
     e.preventDefault();
     
     const res:LoginResponse = await UserService.login(form);
+   
+    
     if(res.username){
       localStorage.setItem("user",JSON.stringify(res));
 
