@@ -6,6 +6,7 @@ export class AlumnoModel {
     nombres : string = '';
     apellido_paterno : string = '';
     apellido_materno : string = '';
+    email : string = '';
     fecha_nacimiento : Date = new Date();
     numero_documento : string = '';
     id_genero : number = 0;
@@ -16,12 +17,13 @@ export class AlumnoModel {
     genero : GeneroModel = new GeneroModel();
     tipo_documento : TipoDocumentoModel = new TipoDocumentoModel();
 
-}
+} 
 
 export class AlumnoCreateModel {
     nombres : string = '';
     apellido_paterno : string = '';
     apellido_materno : string = '';
+    email : string = '';
     fecha_nacimiento : Date = new Date();
     numero_documento : string = '';
     id_genero : number = 0;
@@ -31,6 +33,7 @@ export class AlumnoCreateModel {
         this.nombres = model.nombres
         this.apellido_paterno = model.apellido_paterno
         this.apellido_materno = model.apellido_materno
+        this.email = model.email
         this.fecha_nacimiento = model.fecha_nacimiento
         this.numero_documento = model.numero_documento
         this.id_genero = model.id_genero
@@ -42,6 +45,7 @@ export class AlumnoUpdateModel {
     nombres : string = '';
     apellido_paterno : string = '';
     apellido_materno : string = '';
+    email : string = '';
     fecha_nacimiento : Date = new Date();
     numero_documento : string = '';
     id_genero : number = 0;
@@ -52,6 +56,7 @@ export class AlumnoUpdateModel {
         this.nombres = model.nombres
         this.apellido_paterno = model.apellido_paterno
         this.apellido_materno = model.apellido_materno
+        this.email = model.email
         this.fecha_nacimiento = model.fecha_nacimiento
         this.numero_documento = model.numero_documento
         this.id_genero = model.id_genero

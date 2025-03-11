@@ -31,7 +31,7 @@ apiClient.interceptors.response.use(
   },
   (error) => {
     if (error) {
-      Swal.fire({text:error?.response?.data.message,icon:"warning"})
+      Swal.fire({text:error?.response?.data.error.join(),icon:"warning"})
     } else {
       Swal.fire({text:"Error en la solicitud",icon:"warning"})
     }

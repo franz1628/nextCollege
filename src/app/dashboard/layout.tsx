@@ -29,6 +29,10 @@ export default function DashboarLayout({
         <nav className="">
             <a href="/dashboard/alumno" className="text-gray-600 hover:text-blue-600">Alumno</a>
         </nav>
+
+        <nav className="">
+            <a href="/dashboard/curso" className="text-gray-600 hover:text-blue-600">Curso</a>
+        </nav>
         
         <div className="">
           
