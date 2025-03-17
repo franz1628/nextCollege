@@ -19,7 +19,21 @@ export const AlumnoService = {
     delete : async (id:number):Promise<ApiResponse<AlumnoModel>>  => {
         const response =  await apiClient.delete('alumno/'+id)
         return response.data;
+    },
+    upload: async (idAlumno: number, file: File): Promise<ApiResponse<AlumnoModel>> => {
+        const formData = new FormData();
+        formData.append('idAlumno', idAlumno.toString());
+        formData.append('file', file);
+    
+        const response = await apiClient.post('image/upload', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+    
+        return response.data;
     }
+
 }
 
 
