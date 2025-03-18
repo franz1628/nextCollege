@@ -13,17 +13,18 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { AlumnoService } from "@/services/AlumnoService"
+import { z } from "zod";
 
-const schema = yup.object().shape({
-  nombres: yup.string().required("El nombre es obligatorio"),
-  email: yup.string().email("Correo inválido").required("El correo es obligatorio"),
-  apellido_paterno: yup.string().required("El apellido paterno es obligatorio"),
-  apellido_materno: yup.string().required("El apellido materno es obligatorio"),
-  fecha_nacimiento: yup.date().required("La fecha de nacimiento es obligatoria"),
-  id_tipo_documento: yup.number().required("El tipo de documento es obligatorio"),
-  numero_documento: yup.string().required("El numero de documento es obligatorio"),
-  id_genero: yup.number().required("El genero es obligatorio"),
-  estado: yup.number().required("El estado es obligatorio"),
+const alumnoSchema = z.object({
+  nombres: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
+  apellido_paterno: z.string().min(2, "El apellido paterno es obligatorio"),
+  apellido_materno: z.string().optional(),
+  fecha_nacimiento: z.string().refine((val) => new Date(val) < new Date(), "La fecha debe ser anterior a hoy"),
+  id_tipo_documento: z.number().min(1, "Selecciona un tipo de documento válido"),
+  numero_documento: z.string().min(8, "Debe tener al menos 8 caracteres"),
+  email: z.string().email("Correo electrónico no válido"),
+  id_genero: z.number().min(1, "Selecciona un género válido"),
+  estado: z.number().min(0, "Selecciona un estado válido"),
 });
 
 interface Props{
@@ -36,10 +37,6 @@ const AlumnoForm:React.FC<Props> = ({handleGuardar, model}) => {
     const [generos, setGeneros] = useState<GeneroModel[]>([])
     const [tipoDocumentos, setTipoDocumentos] = useState<TipoDocumentoModel[]>([])
     const [file, setFile] = useState<File | null>(null);
-
-    const { register, handleSubmit, formState: { errors } } = useForm({
-      resolver: yupResolver(schema),
-    });
 
     useEffect(()=>{
        (
@@ -56,7 +53,6 @@ const AlumnoForm:React.FC<Props> = ({handleGuardar, model}) => {
     useEffect(()=>{
         setForm(model)
     },[model])
-
 
     const onSubmit = () => {
   
@@ -84,11 +80,11 @@ const AlumnoForm:React.FC<Props> = ({handleGuardar, model}) => {
     return <>
       <div className="grid grid-cols-2">
         <div>
-          <form onSubmit={handleSubmit(onSubmit)} className="mb-4">
-            <Input {...register("nombres")}  error={errors.nombres?.message}  type="text" label="Nombres" placeholder="Nombres..." value={form.nombres} onChange={(e)=>setForm({ ...form, nombres: e.target.value })} />
+          <form onSubmit={onSubmit} className="mb-4">
+            <Input type="text" label="Nombres" placeholder="Nombres..." value={form.nombres} onChange={(e)=>setForm({ ...form, nombres: e.target.value })} />
           
         
-            <Input {...register("apellido_paterno")} error={errors.apellido_paterno?.message}  type="text" label="Apellido Paterno" placeholder="Apellido Paterno..." value={form.apellido_paterno} onChange={(e)=>setForm({ ...form, apellido_paterno: e.target.value })} />
+            <Input type="text" label="Apellido Paterno" placeholder="Apellido Paterno..." value={form.apellido_paterno} onChange={(e)=>setForm({ ...form, apellido_paterno: e.target.value })} />
             <Input type="text" label="Apellido Materno" placeholder="Apellido Materno..." value={form.apellido_materno} onChange={(e)=>setForm({ ...form, apellido_materno: e.target.value })} />
             <Input type="date" label="Nacimiento" max={formatDate(new Date())} placeholder="Fecha Nacimiento..." value={formatDate(form.fecha_nacimiento)} onChange={(e)=>setForm({ ...form, fecha_nacimiento: new Date(e.target.value) })} />
 
@@ -103,7 +99,7 @@ const AlumnoForm:React.FC<Props> = ({handleGuardar, model}) => {
 
             <Input label="Numero Documento" type="text" placeholder="Numero documento..." value={form.numero_documento} onChange={(e)=>setForm({ ...form, numero_documento: e.target.value })} />
             
-            <Input {...register("email")} label="Email" type="email" placeholder="Email..." value={form.email} onChange={(e)=>setForm({ ...form, email: e.target.value })} />
+            <Input label="Email" type="email" placeholder="Email..." value={form.email} onChange={(e)=>setForm({ ...form, email: e.target.value })} />
 
             <Select label="Genero" onChange={(e)=>setForm({ ...form, id_genero: +e.target.value })} value={form.id_genero.toString()}>
               <option value="">SELECCIONAR</option>

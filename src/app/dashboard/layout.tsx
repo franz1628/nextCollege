@@ -18,7 +18,10 @@ export default function DashboarLayout({
     
         <a href="/" className="text-xl font-bold text-gray-800">College</a>
 
-        
+        <nav className="">
+            <a href="/dashboard/matricula" className="text-gray-600 hover:text-blue-600">Matrícula</a>
+        </nav>
+
         <nav className="">
             <a href="/dashboard/genero" className="text-gray-600 hover:text-blue-600">Genero</a>
         </nav>
