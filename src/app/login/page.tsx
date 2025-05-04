@@ -7,6 +7,7 @@ import { UserModel } from "@/types/UserModel";
 import { KeyIcon } from "@heroicons/react/16/solid";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 interface Props {
 
@@ -30,8 +31,9 @@ const Login: React.FC<Props> = ({}) => {
     
     if(res.username){
       localStorage.setItem("user",JSON.stringify(res));
-
       router.push("/dashboard/genero")
+    }else{
+      Swal.fire("Advertencia","Usuario o contraseña incorrecta","warning");
     }
     
     
