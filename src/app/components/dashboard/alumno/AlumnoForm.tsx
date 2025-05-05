@@ -9,11 +9,9 @@ import { TipoDocumentoModel } from "@/types/TipoDocumentoModel"
 import formatDate from "@/utils/formatDate"
 import { CheckIcon, CloudArrowDownIcon, CloudArrowUpIcon, XMarkIcon } from "@heroicons/react/16/solid"
 import { FormEventHandler, useEffect, useState } from "react"
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { AlumnoService } from "@/services/AlumnoService"
 import { z } from "zod";
+import Swal from "sweetalert2";
 
 const alumnoSchema = z.object({
   nombres: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
@@ -67,8 +65,12 @@ const AlumnoForm:React.FC<Props> = ({handleGuardar, model}) => {
 
       const a = await AlumnoService.upload(model.id,file)
       
-      console.log(a);
-      
+      if(a.state==1){
+        Swal.fire("Mensaje","Imagen subido correctamente","success");
+      }else{
+        Swal.fire("Advertencia","Hubo un error al subir la imagen","warning");
+      }
+       
     }
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
